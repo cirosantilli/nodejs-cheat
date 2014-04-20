@@ -71,6 +71,14 @@ Install all dependencies of `package.json` in current dir under `node_modules`:
 - `dependencies` are installed both when `npm install` from package root and `napm install package`.
 - `devDependencies` are only installed in the former case.
 
+Run package's start script if one was given (TODO how):
+
+    npm start
+
+Standard way to start running the main function of a package. For example, the Express framework is started with `start`.
+
 ##Useful packages
 
-- `express`: web framework
+    # Web framework.
+    npm install express
+    npm install -g express-generator@3
