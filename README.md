@@ -64,6 +64,12 @@ As of node `0.9.9` comes together with Node, but with a version several tags beh
 
 The config file is `package.json`.
 
+Help:
+
+    npm help
+    npm help install
+    npm help start
+
 Install all dependencies of `package.json` in current dir under `node_modules`:
 
     npm install
