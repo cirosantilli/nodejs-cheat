@@ -77,6 +77,14 @@ Install all dependencies of `package.json` in current dir under `node_modules`:
 - `dependencies` are installed both when `npm install` from package root and `napm install package`.
 - `devDependencies` are only installed in the former case.
 
+As explained in `npm help folders`:
+
+- Local install (default): puts stuff in `./node_modules` of the current package root.
+- Global install (with -g): puts stuff in `/usr/local` or wherever node is installed.
+- Install it locally if you´re going to `require()` it.
+- Install it globally if you´re going to run it on the command line.
+- If you need both, then install it in both places, or use npm link.
+
 Run package's start script if one was given (TODO how):
 
     npm start
@@ -88,3 +96,5 @@ Standard way to start running the main function of a package. For example, the E
     # Web framework.
     npm install express
     npm install -g express-generator@3
+    # Markdown.
+    npm install -g marked
