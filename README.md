@@ -1,5 +1,35 @@
 Node.js information and cheatsheets.
 
+#Sources
+
+Short tutorials: <http://docs.nodejitsu.com>
+
+#Node
+
+Node is interpreted / compiled by Google's open source V8 Javascript engine used in Chrome: <https://code.google.com/p/v8>, official Git mirror at: <https://github.com/v8/v8>.
+
+V8 implements all of ECMAScript 5, so you can use all of it, including things which you should not usually use from browsers because some browsers don't implement them.
+
+When run from outside the browser, logically objects such as `document` which represent web page concepts are not defined.
+
+TODO does V8 implement extensions to ECMAScript, or are they somehow added by node afterwards?
+
+REPL interface:
+
+    node
+
+Run script:
+
+    node main.js
+
+##Stability
+
+The official documentation specifies the stability of each feature.
+
+What each stability level means is specified at: <http://nodejs.org/api/documentation.html#documentation_stability_index>
+
+Level 3 or above guarantee backwards compatibility.
+
 #Ubuntu install
 
 Don't install from the official repositories: they are seriously outdated.
@@ -54,7 +84,7 @@ Use per directory config inside `.nvmrc`:
 
 Always use this in your project root to set the supported node version.
 
-As of early 2014, does not change version automatically like rvm does.
+As of early 2014, does not change version automatically like RVM does.
 
 #NPM
 
