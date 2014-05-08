@@ -1,18 +1,45 @@
 Node.js information and cheatsheets.
 
-#Sources
+General Javascript information will not be discussed here: only Node.js differences. For a Javascript cheat see: <https://github.com/cirosantilli/web/blob/9db1039276bd8dfd04348e0abbf2b1d2ee75c00d/js.html>
 
-Short tutorials: <http://docs.nodejitsu.com>
+#What is Node.js
 
-#Node
+Node is Javascript interpreted / compiled by Google's open source V8 Javascript engine used in Chrome: <https://code.google.com/p/v8>, official Git mirror at: <https://github.com/v8/v8> outside of browsers.
 
-Node is interpreted / compiled by Google's open source V8 Javascript engine used in Chrome: <https://code.google.com/p/v8>, official Git mirror at: <https://github.com/v8/v8>.
+It is often used on server side applications, although it already has many client applications as well.
 
 V8 implements all of ECMAScript 5, so you can use all of it, including things which you should not usually use from browsers because some browsers don't implement them.
 
-When run from outside the browser, logically objects such as `document` which represent web page concepts are not defined.
+Since it is run from outside the browser, built-in objects such as `document` and `window` which represent web page concepts are not defined. That those built-in objects are not defined as part of ECMAScript.
 
-TODO does V8 implement extensions to ECMAScript, or are they somehow added by node afterwards?
+Node does add other built-ins and a file require system. These add functionatily which is often implemented in the stdlib of other languages like Python or Ruby, such as file IO, and cannot be provided by in-browser Javascript for security concerns.
+
+#Why Noje.js
+
+The major advantages of Nodejs are:
+
+-   There is a huge number of people who know the base langauge (Javascript), because every web developper must know Javscript as it is run on the front-end, while there are tons of backend alternatives (Ruby, Python, PHP, Perl, Java, etc.)
+
+    This means that if you write code in Node.js:
+
+    - many people can understand it already
+    - you don't have to learn a new language
+
+-   It  is possible to write a single application that runs on:
+
+    - the server
+    - the browser
+    - locally
+
+    An example application are markdown engines, in which you may want coherent:
+
+    - server backend rendering before giving content to the browser
+    - in-browser rendering for preview as you type
+    - local rendering for offline development
+
+    It is therefore no surprise that there are currently 3 Node.js markdown engines with huge number of stars on GitHub: [Marked](https://github.com/chjj/marked), [markdown-js](https://github.com/evilstreak/markdown-js) and [Showdown](https://github.com/coreyti/showdown).
+
+#Invocation
 
 REPL interface:
 
@@ -128,3 +155,7 @@ Standard way to start running the main function of a package. For example, the E
     npm install -g express-generator@3
     # Markdown.
     npm install -g marked
+
+#Sources
+
+Short tutorials: <http://docs.nodejitsu.com>
