@@ -7,10 +7,54 @@ var assert = require('assert')
 
 //#builtins
 
-  //#console #stdout
+  //#console
 
-    console.log('stdout %d', 1);
-    console.error('stderr')
+    // log to streams.
+
+    // Standard way to write to messages: more flexible than explicit stdout / err as they can be redirected
+    // to other places as needed.
+
+    // #log goes to stdout by default and takes printf formated strings. Automatically adds trailing newline.
+
+    console.log('log %d', 1);
+
+    // #error goes to stderr by default:
+
+    console.error('error')
+
+  //#process
+
+    //#stdout #stderr
+
+      // Prefer `log` functions whenever possible.
+
+      process.stdout.write('stdout\n')
+      process.stdout.write('stderr\n')
+
+    //#stdin
+
+      // Read stdin until closed.
+
+      if (true) {
+        process.stdin.setEncoding('utf8')
+        var input = ''
+        process.stdin.on('readable', function() {
+          var chunk = process.stdin.read()
+          process.stdout.write('stdin.on: chunk = ' + chunk + '\n')
+          if (chunk !== null ) {
+            input += chunk
+          }
+        })
+        process.stdin.on('end', function() {
+          process.stdout.write('stdin end: input = ' + input + '\n')
+        })
+      }
+
+    //#argv
+
+      console.log('argv = ' + process.argv.join(', '))
+
+      // Sample output: `node, /path/to/script.js`.
 
 //#module
 
@@ -26,6 +70,8 @@ var assert = require('assert')
 
   var m = require('./module.js')
   assert.equal(global.v, 1)
+
+//#exports
 
 //#modules
 

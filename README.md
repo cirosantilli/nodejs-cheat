@@ -12,13 +12,27 @@ V8 implements all of ECMAScript 5, so you can use all of it, including things wh
 
 Since it is run from outside the browser, built-in objects such as `document` and `window` which represent web page concepts are not defined. That those built-in objects are not defined as part of ECMAScript.
 
-Node does add other built-ins and a file require system. These add functionatily which is often implemented in the stdlib of other languages like Python or Ruby, such as file IO, and cannot be provided by in-browser Javascript for security concerns.
+Node does add other built-ins and a file require system. These add functionality which is often implemented in the stdlib of other languages like Python or Ruby, such as file IO, and cannot be provided by in-browser Javascript for security concerns.
 
-#Why Noje.js
+##Common js
 
-The major advantages of Nodejs are:
+Informal standard that aims at standardizing the API for Javascript outside of browsers: <http://www.commonjs.org/specs/>
 
--   There is a huge number of people who know the base langauge (Javascript), because every web developper must know Javscript as it is run on the front-end, while there are tons of backend alternatives (Ruby, Python, PHP, Perl, Java, etc.)
+Node implements it.
+
+It specifies things like: Filesystem, log, etc.
+
+##RequireJs
+
+Module loader optimized for browser: <http://requirejs.org/docs/node.html>
+
+Node does not use it.
+
+#Why Node.js
+
+The major advantages of Node.js are:
+
+-   There is a huge number of people who know the base language (Javascript), because every web developper must know Javscript as it is run on the front-end, while there are tons of backend alternatives (Ruby, Python, PHP, Perl, Java, etc.)
 
     This means that if you write code in Node.js:
 
@@ -117,7 +131,7 @@ As of early 2014, does not change version automatically like RVM does.
 
 Node package manager. Analogous to Ruby Bundler, Python pip.
 
-As of node `0.9.9` comes together with Node, but with a version several tags behind head.
+As of node `0.9.9` comes together with Node, but several tags behind head.
 
 The config file is `package.json`.
 
