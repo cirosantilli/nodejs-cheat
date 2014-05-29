@@ -6,6 +6,8 @@ General Javascript information will not be discussed here: only Node.js differen
 
 Node is Javascript interpreted / compiled by Google's open source V8 Javascript engine used in Chrome: <https://code.google.com/p/v8>, official Git mirror at: <https://github.com/v8/v8> outside of browsers.
 
+It transforms Javascript into a language + stdlib comparable to Python or Ruby.
+
 It is often used on server side applications, although it already has many client applications as well.
 
 V8 implements all of ECMAScript 5, so you can use all of it, including things which you should not usually use from browsers because some browsers don't implement them.
@@ -13,6 +15,8 @@ V8 implements all of ECMAScript 5, so you can use all of it, including things wh
 Since it is run from outside the browser, built-in objects such as `document` and `window` which represent web page concepts are not defined. That those built-in objects are not defined as part of ECMAScript.
 
 Node does add other built-ins and a file require system. These add functionality which is often implemented in the stdlib of other languages like Python or Ruby, such as file IO, and cannot be provided by in-browser Javascript for security concerns.
+
+Node gives great importance to parallel processing, because its development is closely related with web development, where requests are often made over the network and always take a very large time to complete. Many methods have both synchronous and asynchronous versions, including filesystem IO.
 
 ##Common js
 
@@ -62,6 +66,10 @@ REPL interface:
 Run script:
 
     node main.js
+
+Run `index.js` inside directory:
+
+    node index.js
 
 ##Stability
 
@@ -162,6 +170,12 @@ Run package's start script if one was given (TODO how):
 
 Standard way to start running the main function of a package. For example, the Express framework is started with `start`.
 
+Get information on a remote package:
+
+    npm info package_name
+
+Returns a JSON which includes information such as available versions and everything inside the `package.json`.
+
 ##Useful packages
 
     # Web framework.
@@ -169,6 +183,8 @@ Standard way to start running the main function of a package. For example, the E
     npm install -g express-generator@3
     # Markdown.
     npm install -g marked
+    # Markdown.
+    npm install -g browserify
 
 #Sources
 
