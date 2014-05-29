@@ -89,6 +89,9 @@ var assert = require('assert')
   //
   // - module.exports.a = x and exports.a = x are the same.
   // - module.exports = y at any points makes all exports.a = x and module.exports.a = x be ignored.
+  //
+  //     This approach is less flexible, but it can be convenient for modules whose functionality
+  //     is contained all under a single function.
 
   var m = require('./module.js')
   assert.equal(m.v, undefined)
