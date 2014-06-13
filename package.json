@@ -1,8 +1,14 @@
 {
   "name": "cirosantilli",
   "dependencies" : {
-    "bower":         "*",
-    "coffee-script": "*",
-    "marked":        "*"
+    "bower":         "",
+    "coffee-script": "",
+    "express":       "",
+    "grunt":         "",
+    "marked":        ""
+  },
+  "scripts": {
+    "start": "echo start",
+    "test":  "echo test"
   }
 }

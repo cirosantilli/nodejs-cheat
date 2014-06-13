@@ -37,7 +37,7 @@ Node implements it.
 
 It specifies things like: Filesystem, log, etc.
 
-##RequireJs
+##RequireJS
 
 Module loader optimized for browser: <http://requirejs.org/docs/node.html>
 
@@ -167,9 +167,15 @@ Help:
     npm help install
     npm help start
 
+##Install
+
 Install all dependencies of `package.json` in current dir under `node_modules`:
 
     npm install
+
+Help on the format of `package.json`:
+
+    npm help json
 
 - `dependencies` are installed both when `npm install` from package root and `napm install package`.
 - `devDependencies` are only installed in the former case.
@@ -196,10 +202,31 @@ Dependency version specification:
 
 Run package's start script if one was given (TODO how):
 
-    npm start
+##start
 
-Standard way to start running the main function of a package. For example,
-the Express framework is started with `start`.
+##test
+
+##scripts
+
+    npm help scripts
+
+NPM supports a predefined list of scripts to do some common Makefile-like tasks.
+
+The functionality is limited since only tasks with one of the standard names can be used.
+
+Tasks have a default command, and you can configure them under `package.json` `scripts` `name` section, e.g.:
+
+    "scripts": {
+        "start": "echo start",
+        "test":  "echo test"
+    }
+
+Configures the scripts:
+
+    npm start
+    npm test
+
+##info
 
 Get information on a remote package:
 
@@ -208,10 +235,9 @@ Get information on a remote package:
 Returns a JSON which includes information such as available versions
 and everything inside the `package.json`.
 
-##Useful packages
+##Useful global packages
 
     # Web framework.
-    npm install express
     npm install -g express-generator@3
     # Markdown.
     npm install -g marked
