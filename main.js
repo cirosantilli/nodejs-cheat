@@ -28,7 +28,7 @@ var assert = require('assert')
 
     // #log goes to stdout by default and takes printf formated strings. Automatically adds trailing newline.
 
-    console.log('log %d', 1);
+    console.log('log %d', 1)
 
     // #error goes to stderr by default:
 

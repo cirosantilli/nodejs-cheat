@@ -1,22 +1,33 @@
 Node.js information and cheatsheets.
 
-General Javascript information will not be discussed here: only Node.js differences. For a Javascript cheat see: <https://github.com/cirosantilli/web/blob/9db1039276bd8dfd04348e0abbf2b1d2ee75c00d/js.html>
+General Javascript information will not be discussed here: only Node.js differences.
+For a Javascript cheat see: <https://github.com/cirosantilli/web/blob/9db1039276bd8dfd04348e0abbf2b1d2ee75c00d/js.html>
 
 #What is Node.js
 
-Node is Javascript interpreted / compiled by Google's open source V8 Javascript engine used in Chrome: <https://code.google.com/p/v8>, official Git mirror at: <https://github.com/v8/v8> outside of browsers.
+Node is Javascript interpreted / compiled by Google's open source V8 Javascript engine
+used in Chrome: <https://code.google.com/p/v8>,
+official Git mirror at: <https://github.com/v8/v8> outside of browsers.
 
 It transforms Javascript into a language + stdlib comparable to Python or Ruby.
 
 It is often used on server side applications, although it already has many client applications as well.
 
-V8 implements all of ECMAScript 5, so you can use all of it, including things which you should not usually use from browsers because some browsers don't implement them.
+V8 implements all of ECMAScript 5, so you can use all of it,
+including things which you should not usually use from browsers because some browsers don't implement them.
 
-Since it is run from outside the browser, built-in objects such as `document` and `window` which represent web page concepts are not defined. That those built-in objects are not defined as part of ECMAScript.
+Since it is run from outside the browser, built-in objects such as `document` and `window`
+which represent web page concepts are not defined. That those built-in objects
+are not defined as part of ECMAScript.
 
-Node does add other built-ins and a file require system. These add functionality which is often implemented in the stdlib of other languages like Python or Ruby, such as file IO, and cannot be provided by in-browser Javascript for security concerns.
+Node does add other built-ins and a file require system. These add functionality
+which is often implemented in the stdlib of other languages like Python or Ruby,
+such as file IO, and cannot be provided by in-browser Javascript for security concerns.
 
-Node gives great importance to parallel processing, because its development is closely related with web development, where requests are often made over the network and always take a very large time to complete. Many methods have both synchronous and asynchronous versions, including filesystem IO.
+Node gives great importance to parallel processing, because its development
+is closely related with web development, where requests are often made over the network
+and always take a very large time to complete.
+Many methods have both synchronous and asynchronous versions, including filesystem IO.
 
 ##Common js
 
@@ -36,7 +47,9 @@ Node does not use it.
 
 The major advantages of Node.js are:
 
--   There is a huge number of people who know the base language (Javascript), because every web developper must know Javscript as it is run on the front-end, while there are tons of backend alternatives (Ruby, Python, PHP, Perl, Java, etc.)
+-   There is a huge number of people who know the base language (Javascript),
+    because every web developer must know Javascript as it is run on the front-end,
+    while there are tons of backend alternatives (Ruby, Python, PHP, Perl, Java, etc.)
 
     This means that if you write code in Node.js:
 
@@ -55,7 +68,10 @@ The major advantages of Node.js are:
     - in-browser rendering for preview as you type
     - local rendering for offline development
 
-    It is therefore no surprise that there are currently 3 Node.js markdown engines with huge number of stars on GitHub: [Marked](https://github.com/chjj/marked), [markdown-js](https://github.com/evilstreak/markdown-js) and [Showdown](https://github.com/coreyti/showdown).
+    It is therefore no surprise that there are currently 3 Node.js markdown engines
+    with huge number of stars on GitHub: [Marked](https://github.com/chjj/marked),
+    [markdown-js](https://github.com/evilstreak/markdown-js)
+    and [Showdown](https://github.com/coreyti/showdown).
 
 #Invocation
 
@@ -75,7 +91,8 @@ Run `index.js` inside directory:
 
 The official documentation specifies the stability of each feature.
 
-What each stability level means is specified at: <http://nodejs.org/api/documentation.html#documentation_stability_index>
+What each stability level means is specified at:
+<http://nodejs.org/api/documentation.html#documentation_stability_index>
 
 Level 3 or above guarantee backwards compatibility.
 
@@ -110,7 +127,8 @@ Install a new version of Node:
     nvm install 0.9.0
     nvm install 0.9.9
 
-May either download a binary (fast) or compile from source if not possible (slower and requires that you have dev tools installed).
+May either download a binary (fast) or compile from source if not possible
+(slower and requires that you have dev tools installed).
 
 List currently installed node versions:
 
@@ -159,22 +177,36 @@ Install all dependencies of `package.json` in current dir under `node_modules`:
 As explained in `npm help folders`:
 
 - Local install (default): puts stuff in `./node_modules` of the current package root.
-- Global install (with -g): puts stuff in `/usr/local` or wherever node is installed.
+- Global install (with `-g`): puts stuff in `/usr/local` or wherever node is installed.
 - Install it locally if you´re going to `require()` it.
 - Install it globally if you´re going to run it on the command line.
-- If you need both, then install it in both places, or use npm link.
+- If you need both, then install it in both places, or use `npm link`.
+
+If the current directory contains a `package.json`, install given package under `./node_modeules`:
+
+    npm install package_name
+
+Also modify `dependencies` of `package.json` in current directory if there is one to include the new module:
+
+    npm install package_name --save
+
+Dependency version specification:
+
+- `""` or `"*"`: any version
 
 Run package's start script if one was given (TODO how):
 
     npm start
 
-Standard way to start running the main function of a package. For example, the Express framework is started with `start`.
+Standard way to start running the main function of a package. For example,
+the Express framework is started with `start`.
 
 Get information on a remote package:
 
     npm info package_name
 
-Returns a JSON which includes information such as available versions and everything inside the `package.json`.
+Returns a JSON which includes information such as available versions
+and everything inside the `package.json`.
 
 ##Useful packages
 
