@@ -167,7 +167,7 @@ Help:
     npm help install
     npm help start
 
-##Install
+##install
 
 Install all dependencies of `package.json` in current dir under `node_modules`:
 
@@ -177,16 +177,30 @@ Help on the format of `package.json`:
 
     npm help json
 
-- `dependencies` are installed both when `npm install` from package root and `napm install package`.
-- `devDependencies` are only installed in the former case.
+- `dependencies`: are installed both when `npm install` from package root and `napm install package`.
+- `devDependencies`: are only installed in the former case.
+- `peerDependencies`: TODO <http://blog.nodejs.org/2013/02/07/peer-dependencies/>
 
 As explained in `npm help folders`:
 
-- Local install (default): puts stuff in `./node_modules` of the current package root.
-- Global install (with `-g`): puts stuff in `/usr/local` or wherever node is installed.
-- Install it locally if you´re going to `require()` it.
-- Install it globally if you´re going to run it on the command line.
-- If you need both, then install it in both places, or use `npm link`.
+-   Local install (default): puts stuff in `./node_modules` of the current package root,
+    which is high on the `require` search path.
+
+    If the module comes with executables, those will be put under `./node_modules/.bin`,
+    so you should add the following line to your `.bashrc`:
+
+        export PATH="./node_modules/.bin:$PATH"
+
+    This way you will use the executables at the same version as specified on the `package.json`.
+
+-   Global install (with `-g`): puts stuff in `/usr/local` or wherever node is installed.
+    TODO: `~/.npm/` vs `~/.nvm/v0.10.26/lib/node_modules/`
+
+-   Install it locally if you´re going to `require()` it.
+
+-   Install it globally if you´re going to run it on the command line.
+
+-   If you need both, then install it in both places, or use `npm link`.
 
 If the current directory contains a `package.json`, install given package under `./node_modeules`:
 
@@ -196,11 +210,26 @@ Also modify `dependencies` of `package.json` in current directory if there is on
 
     npm install package_name --save
 
-Dependency version specification:
+Same for `devDependencies`:
 
-- `""` or `"*"`: any version
+    npm install package_name --saveDev
 
-Run package's start script if one was given (TODO how):
+The main advantage of `--save` this is that it sets the current version for you:
+you will probably want to edit the `package.json` file to put `dependencies`
+in alphabetical order.
+
+###Versions specification
+
+For `dependencies`, `devDependencies` and `peerDependencies`:
+
+-   caret `^`: latest major version. `^1.2.3` matches `1.3.5`, but not `2.0.0`.
+
+    Default on NPM 1.4.3, and probably a good default, since with semantic versioning
+    it incorporates new features (`MINOR`) and bug fixes (`PATCH`).
+
+-   tilde `~`: latest minor version. `~1.2.3` matches `1.2.5`, but not `~1.2.0`
+
+-   `""` or `"*"`: any version
 
 ##start
 
@@ -237,12 +266,31 @@ and everything inside the `package.json`.
 
 ##Useful global packages
 
-    # Web framework.
-    npm install -g express-generator@3
-    # Markdown.
-    npm install -g marked
-    # Markdown.
     npm install -g browserify
+    npm install -g coffee-script
+    npm install -g express-generator@3
+    npm install -g marked
+
+##link
+
+Creates symlinks from projects in any directory into the search path.
+
+Useful for interactive tests of a module inside another project.
+
+Example:
+
+    cd ~/projects/module1
+    npm link ../module2
+
+Now, running `module1` will use the development version of `module2` located at `~/projects/module2`
+using symlinks.
+
+##package.json
+
+The following fields are mandatory:
+
+- `name`
+- `version`
 
 #Sources
 

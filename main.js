@@ -85,18 +85,63 @@ var assert = require('assert')
 
   // Only exported variables are visible.
 
-  // module.exports vs exports: http://stackoverflow.com/questions/7137397/module-exports-vs-exports-in-nodejs
-  //
-  // - module.exports.a = x and exports.a = x are the same.
-  // - module.exports = y at any points makes all exports.a = x and module.exports.a = x be ignored.
-  //
-  //     This approach is less flexible, but it can be convenient for modules whose functionality
-  //     is contained all under a single function.
-
   var m = require('./module.js')
   assert.equal(m.v, undefined)
   assert.equal(m.v_exports, 3)
   assert.equal(m.v_module_exports, 4)
+
+  /*
+  #require search #path
+
+  Docs: http://nodejs.org/api/modules.html#modules_all_together
+
+  Follows the CommonJS spec.
+
+  Approximation:
+
+  If a file is not founc, Node also adds `.js`, `.json` and `.node` extensions.
+
+  Json are parsed as Javascript objects. It is more explicit to read the file and parse it with ES5's JSON.
+
+  Best never to use extensions as it allows you to convert files to directries later on.
+
+  - if argument is a path (starts with `/`, `./` or `../`), use the path.
+      Needs to start like that for relative paths.
+  - load core module with the name (stdlib)
+  - look for it inside `node_modules` in current directory. Go up the directory tree.
+  - look for it inside `NODE_PATH` environemnt path variable.
+      `require.paths` used to exist but was removed.
+  */
+
+  // Explicit name.
+  var m = require('./module.js')
+
+  // `.js` added.
+  var m = require('./module')
+
+  // Cannot require directory with extension.
+  assert.throws(
+    function() {
+      require('./module_dir.js')
+    },
+    Error
+  )
+
+  // Require json.
+  var m = require('./module_json')
+  assert.equal(m.a, "0")
+  assert.equal(m.b, "1")
+
+  /*
+  `module.exports` vs `exports`: <http://stackoverflow.com/questions/7137397/module-exports-vs-exports-in-nodejs>
+
+  -   `module.exports.a = x` and `exports.a = x` are the same.
+
+  -   `module.exports = y` at any points makes all `exports.a = x` and `module.exports.a = x` be ignored.
+
+      This approach is less flexible, but it can be convenient for modules whose functionality
+      is contained all under a single function.
+  */
 
   var m = require('./module_assign.js')
   assert.equal(m.a, undefined)
@@ -177,10 +222,53 @@ var assert = require('assert')
         fs.unlinkSync(filename)
       }
 
+  //#os
+
+    var os = require('os')
+    console.log('os.tmpdir() = ' + os.tmpdir())
+
   //#temporary files
 
-    // Not possible with stdlib. Third party modules exist.
+    // Not possible atomically with stdlib. Third party modules exist:
     // http://stackoverflow.com/questions/7055061/nodejs-temporary-file-name
+
+    // Possible to find tmp dir with `os.tmpdir()`.
+
+  //#child_process
+
+    //#exec
+
+      var child_process = require('child_process')
+
+      child_process.exec(
+        'echo out && echo err 1>&2',
+        function(error, stdout, stderr) {
+          // null if no error.
+          // Error if return status != 0.
+          if (error !== null) {
+            console.log(error)
+          }
+          console.log('stdout = ' + stdout)
+          console.log('stderr = ' + stderr)
+        }
+      ).on('exit', function(status){
+        console.log('status = ' + status)
+      })
+
+      child_process.exec(
+        'exit 1',
+        function(error, stdout, stderr) {
+          if (error !== null) {
+            console.log(error)
+          }
+        }
+      ).on('exit', function(status){
+        console.log('status = ' + status)
+      })
+
+    //#spawn
+
+      // TODO vs exec
 
 //#document #window
 
