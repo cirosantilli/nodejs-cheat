@@ -1,0 +1,4 @@
+module.exports = (grunt) ->
+  grunt.initConfig
+  grunt.loadNpmTasks 'grunt-'
+  grunt.registerTask 'default', ['']

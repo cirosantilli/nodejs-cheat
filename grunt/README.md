@@ -14,3 +14,5 @@ It is usually listed under `devDependencies`.
 Show help and list available tasks:
 
     grunt -h
+
+`Gruntfile` can be written in `.coffee`.

@@ -81,11 +81,13 @@ REPL interface:
 
 Run script:
 
-    node main.js
+    node a.js
 
 Run `index.js` inside directory:
 
-    node index.js
+    node dir/
+
+Analogous to `require(dir)`.
 
 ##Stability
 
@@ -243,17 +245,26 @@ NPM supports a predefined list of scripts to do some common Makefile-like tasks.
 
 The functionality is limited since only tasks with one of the standard names can be used.
 
-Tasks have a default command, and you can configure them under `package.json` `scripts` `name` section, e.g.:
+Tasks have a default command, and you can configure them under `package.json`
+`scripts` `name` section, e.g.:
 
     "scripts": {
-        "start": "echo start",
-        "test":  "echo test"
+      "start": "echo start",
+      "test":  "echo test"
     }
 
-Configures the scripts:
+Run the scripts:
 
     npm start
     npm test
+
+Some scripts are automatically run by certain commands besides their respective command,
+e.g. `prepublish` is run not only before `npm publish`, but also before `npm install`,
+and can be used to do things like:
+
+- CoffeeScript compilation
+- minification
+- `bower install`
 
 ##info
 
@@ -291,6 +302,22 @@ The following fields are mandatory:
 
 - `name`
 - `version`
+
+##Create a package
+
+<https://www.npmjs.org/doc/misc/npm-developers.html>
+
+-   every file in the directory is published by `npm publish`, even if it's not tracked, unless ignored.
+
+-   if a `.npmignore` file exists, it lists the ignored files and `.gitignore` is not used.
+
+    Otherwise, `.gitignore` is used.
+
+Publish a CoffeeScript package: <http://stackoverflow.com/questions/13645824/can-i-write-npm-package-in-coffeescript>:
+
+- `.gititnore` the `.js` output
+- `.npmignore` the CoffeeScript input
+- `prepublish: "grunt coffee"`
 
 #Sources
 

@@ -12,7 +12,7 @@
     "marked":        ""
   },
   "scripts": {
-    "start": "echo start",
-    "test":  "echo test"
+    "start":      "echo start",
+    "test":       "echo test"
   }
 }

@@ -1,11 +1,37 @@
 module.exports = function(grunt) {
 
-  // Project configuration.
-  // Templates: any value can be reused elsewhere.
-  // - <%= pkg.name %>
-  // - <%= uglify.build.src %>
+  /*
+  Project configuration.
+
+  Templates: any value can be reused elsewhere.
+
+  - <%= pkg.name %>
+  - <%= uglify.build.src %>
+
+  Advantage over regular variables:
+
+  - easily reuse pkg
+  - object literal keys cannot be arbitray expressions, only integers, strings or identifiers.
+      So you can't do (variable + '.js'): value, but you can do `'<%= config.valur %>.js: value'`.
+
+  ##minimatch
+
+    Many packages support [minimatch](https://github.com/isaacs/minimatch) extglob file matching as in:
+
+        *.js
+
+    Be careful with `**` as it will matching inside your `node_modules`.
+
+    Friendly reminder: extglob is not like Perl regexes, it's uglier. Match mulitple extensions:
+
+      *.@(coffee|js)
+  */
   grunt.initConfig({
-    // My.
+    // Custom configuration parameters to use in other task configuration.
+    // as `<%= config.coffeeBasename %>`.
+    config: {
+      coffeeBasename: 'coffee',
+    },
     pkg: grunt.file.readJSON('package.json'),
     'basic': {
       arg0: 0,
@@ -40,7 +66,7 @@ module.exports = function(grunt) {
       coffee: {
         options: {
           cmd: 'coffee -cw coffee.coffee',
-        }
+        },
       },
     },
     // grunt shell
@@ -64,9 +90,27 @@ module.exports = function(grunt) {
       },
     },
     watch: {
-      files: ['**/*.js'],
-      tasks: ['uglify'],
-      options: { nospawn: true },
+      // One task set for all files.
+
+        // All js files:
+        //files: ['**/*.js'],
+
+        // If single argument, string can be used instead of Array.
+        //files: '**/*.js',
+
+        //tasks: ['coffee', 'uglify'],
+        //options: { nospawn: true },
+
+      // One task set per file set.
+
+        coffee: {
+          files: ['*.coffee'],
+          tasks: ['coffee'],
+        },
+        uglify: {
+          files: 'uglify.js',
+          tasks: ['uglify'],
+        },
     },
   })
 
@@ -80,6 +124,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bg-shell')
   grunt.loadNpmTasks('grunt-forever')
   grunt.loadNpmTasks('grunt-shell')
+
+  // Dry up dependency loading. TODO convert coffee to js.
+  //for name of pkg.dependencies when name.substring(0, 6) is 'grunt-'
+  //  grunt.loadNpmTasks(name)
+  //for name of pkg.devDependencies when name.substring(0, 6) is 'grunt-'
+  //  if grunt.file.exists("./node_modules/#{name}")
+  //    grunt.loadNpmTasks(name)
 
   // Default task, can be run sipmly with `grunt`.
   grunt.registerTask('default', ['coffee', 'uglify'])

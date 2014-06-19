@@ -1,0 +1,69 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ciro/.nvm/v0.10.26/bin/node',
+1 verbose cli   '/home/ciro/.nvm/v0.10.26/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--saveDev',
+1 verbose cli   'octokat' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 warn package.json @ No description
+5 warn package.json @ No repository field.
+6 warn package.json @ No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'octokat', null ]
+9 verbose cache add name=undefined spec="octokat" args=["octokat",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'octokat',
+10 verbose parsed url   path: 'octokat',
+10 verbose parsed url   href: 'octokat' }
+11 silly lockFile 16be9d1b-octokat octokat
+12 verbose lock octokat /home/ciro/.npm/16be9d1b-octokat.lock
+13 silly lockFile 16be9d1b-octokat octokat
+14 silly lockFile 16be9d1b-octokat octokat
+15 verbose addNamed [ 'octokat', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 2ddfc5e6-octokat octokat@
+18 verbose lock octokat@ /home/ciro/.npm/2ddfc5e6-octokat.lock
+19 silly addNameRange { name: 'octokat', range: '*', hasData: false }
+20 verbose url raw octokat
+21 verbose url resolving [ 'http://registry.npmjs.org/', './octokat' ]
+22 verbose url resolved http://registry.npmjs.org/octokat
+23 info trying registry request attempt 1 at 20:36:18
+24 http GET http://registry.npmjs.org/octokat
+25 http 404 http://registry.npmjs.org/octokat
+26 silly registry.get cb [ 404,
+26 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=0',
+26 silly registry.get     'content-length': '52',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     date: 'Tue, 17 Jun 2014 18:36:19 GMT',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     connection: 'keep-alive',
+26 silly registry.get     'x-served-by': 'cache-fra1235-FRA',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1403030179.456152,VS0,VE110' } ]
+27 silly lockFile 2ddfc5e6-octokat octokat@
+28 silly lockFile 2ddfc5e6-octokat octokat@
+29 error 404 'octokat' is not in the npm registry.
+29 error 404 You should bug the author to publish it
+29 error 404
+29 error 404 Note that you can also install from a
+29 error 404 tarball, folder, or http url, or git url.
+30 error System Linux 3.11.0-23-generic
+31 error command "/home/ciro/.nvm/v0.10.26/bin/node" "/home/ciro/.nvm/v0.10.26/bin/npm" "install" "--saveDev" "octokat"
+32 error cwd /home/ciro/bak/git/nodejs/octo
+33 error node -v v0.10.26
+34 error npm -v 1.4.3
+35 error code E404
+36 verbose exit [ 1, true ]

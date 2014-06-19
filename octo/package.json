@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "octokit": "^0.10.1",
+    "octokat": "git://github.com/philschatz/octokat.js.git"
+  }
+}

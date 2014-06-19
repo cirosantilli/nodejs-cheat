@@ -1,8 +1,8 @@
-#TODO implement kill watch in the Gruntfile.
+#TODO implement kill watch in the Gruntfile, then remove this.
 
 .PHONE: kill watch
 
-input=main.coffee
+input=index.coffee
 pid_file=.watch.pid
 
 kill:
