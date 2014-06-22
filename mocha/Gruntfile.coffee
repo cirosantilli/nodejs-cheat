@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
   grunt.initConfig
     ###
-    ##grunt-mocha-test
+    ##grunt-mocha-test plugin
 
     Run Node.js mocha tests.
 
@@ -14,5 +14,11 @@ module.exports = (grunt) ->
           reporter: 'spec'
           require: 'coffee-script'
         src: '*.@(coffee|js)'
+    shell:
+      programmatic:
+        command: 'node programmatic.js'
   grunt.loadNpmTasks 'grunt-mocha-test'
-  grunt.registerTask 'default', ['mochaTest']
+  grunt.loadNpmTasks 'grunt-shell'
+  grunt.registerTask 'default', '', ->
+    grunt.option 'force', true
+    grunt.task.run ['shell:programmatic', 'mochaTest']

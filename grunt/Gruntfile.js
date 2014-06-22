@@ -69,6 +69,7 @@ module.exports = function(grunt) {
         },
       },
     },
+    //#shell plugin
     // grunt shell
     // grunt shell:a
     // grunt shell:b
@@ -132,24 +133,36 @@ module.exports = function(grunt) {
   //  if grunt.file.exists("./node_modules/#{name}")
   //    grunt.loadNpmTasks(name)
 
-  // Default task, can be run sipmly with `grunt`.
-  grunt.registerTask('default', ['coffee', 'uglify'])
+  //#registerTask
 
-  // Create new task.
+    // Create new task.
 
-    /// There are two types of task: basic and multi.
+    // There are two types of task: basic and multi.
 
-    // Basic task. Run with:
+    // Basic type 1: string + task list:
+
+    // Default task, can be run sipmly with `grunt`.
+    grunt.registerTask('default', ['coffee', 'uglify'])
+
+    // Basic with callback: possible to do further configurations.
+    //
+    // Run with either:
     //
     //     grunt basic
     //     grunt basic:a
     //     grunt basic:a:b
     //
-    // Very limited because cannot use the configuration.
+    // Limited because cannot use the `grunt.initConfig` configuration.
     grunt.registerTask('basic', 'Custom basic task description.', function(arg0, arg1) {
       grunt.log.writeln('this.name = ' + this.name)
       grunt.log.writeln('arg0 = '      + arg0)
       grunt.log.writeln('arg1 = '      + arg1)
+
+      // Set a comman line option.
+      //grunt.option('force', true)
+
+      // Run other tasks.
+      //grunt.task.run(tasks)
     })
 
     // Multi-task. Run with:

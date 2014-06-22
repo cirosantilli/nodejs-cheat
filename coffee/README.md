@@ -14,6 +14,18 @@ Install:
 
     npm install -g coffee-script
 
+# Browser
+
+It is possible to run CoffeeScript on the browser, but it is not recommended to do so
+unless the goal is to allow users to input CoffeeScript because:
+
+- the compiler itself is quite large, 39Kb vs jQuery's 29Kb
+- everything is evaluated inside a single `eval` statement, making it harder to debug
+
+See <browser.html> for a working example.
+
+Discussion: <http://stackoverflow.com/questions/5170473/is-there-a-way-to-send-coffeescript-to-the-clients-browser-and-have-it-compiled>
+
 # Ups and downs
 
 Upsides:
@@ -27,6 +39,26 @@ Downsides:
 - one extra compile step. But now you can run programs simply with `coffee program.coffee`.
 - if an exception is raised at line X, you need a tool to discover what CoffeScript line it is.
     The above solution is not yet perfect: <http://stackoverflow.com/questions/15291424/coffeescript-source-maps-for-nodejs-development>
+
+# Style guides
+
+- <https://github.com/polarmobile/coffeescript-style-guide>
+
+## Lint tools
+
+-   <https://github.com/clutchski/coffeelint>
+
+    Grunt plugin: <https://github.com/vojtajina/grunt-coffeelint>
+
+# Documentation generation
+
+-   <https://github.com/coffeedoc/codo>
+
+-   <https://github.com/atom/biscotto>
+
+    TomDoc notation.
+
+    GitHub backed.
 
 # Invocation
 

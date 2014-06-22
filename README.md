@@ -313,6 +313,12 @@ The following fields are mandatory:
 
     Otherwise, `.gitignore` is used.
 
+    A `.npmignore` is necessary in most cases, and it ignores the following files
+    which are normally not gitignored:
+
+    - tests
+    - CoffeScript input
+
 Publish a CoffeeScript package: <http://stackoverflow.com/questions/13645824/can-i-write-npm-package-in-coffeescript>:
 
 - `.gititnore` the `.js` output

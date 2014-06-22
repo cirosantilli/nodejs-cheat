@@ -3,16 +3,17 @@
   "version": "0.0.1",
   "__dependencies_comment": [
     "Dependencies which I find useful in general, not necessarily used in this cheat."
-  ]
-  "dependencies" : {
-    "bower":         "",
+  ],
+  "dependencies": {
+    "bower": "",
     "coffee-script": "",
-    "express":       "",
-    "grunt":         "",
-    "marked":        ""
+    "express": "",
+    "grunt": "",
+    "marked": "",
+    "open": "0.0.5"
   },
   "scripts": {
-    "start":      "echo start",
-    "test":       "echo test"
+    "start": "echo start",
+    "test": "echo test"
   }
 }

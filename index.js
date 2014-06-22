@@ -9,17 +9,19 @@ var assert = require('assert')
 
   // Unlike inside a browser, `this` on the module scope is not equal to `window`, which contains all global values.
 
-    this.not_defined = 1
-    assert.throws(
-      function() {
-        not_defined
-      },
-      ReferenceError
-    )
+  this.not_defined = 1
+  assert.throws(
+    function() {
+      not_defined
+    },
+    ReferenceError
+  )
 
-//#builtins
+// #global objects #builtins
 
-  //#console
+  // Full list: <http://nodejs.org/api/globals.html>
+
+  // #console
 
     // log to streams.
 
@@ -34,16 +36,16 @@ var assert = require('assert')
 
     console.error('error')
 
-  //#process
+  // #process
 
-    //#stdout #stderr
+    // #stdout #stderr
 
       // Prefer `log` functions whenever possible.
 
       process.stdout.write('stdout\n')
       process.stdout.write('stderr\n')
 
-    //#stdin
+    // #stdin
 
       // Read stdin until closed.
 
@@ -66,7 +68,23 @@ var assert = require('assert')
         console.log('after stdin.on')
       }
 
-    //#argv
+    // #exit
+
+      // Exit with given exit status:
+
+      //process.exit(1)
+
+    // #exit event
+
+      // Run some code just before the process is about to finish.
+
+      // Since it's the last thing, cannot run anything asynchronous from it.
+
+      process.on('exit', function() {
+        console.log('process.on("exit")')
+      })
+
+    // #argv
 
       console.log('argv = ' + process.argv.join(', '))
 
@@ -76,18 +94,28 @@ var assert = require('assert')
 
       arg = process.argv.slice(2)
 
-  //#__dirname #__filename
+  // #setTimeout
+
+    // Compatible interface with Js.
+
+    if (false) {
+      setTimeout(function(){
+          console.log('setTimeout 1s')
+      }, 1000)
+    }
+
+  // #__dirname #__filename
 
     console.log('__dirname  = ' + __dirname)
     console.log('__filename = ' + __filename)
 
-//#module #require #export
+// #module #require #export
 
     require('./require')
 
-//#modules from stdlib
+// #modules from stdlib
 
-  //#assert
+  // #assert
 
     var assert = require('assert')
 
@@ -95,7 +123,7 @@ var assert = require('assert')
     //assert.equal(0, 1)
     //assert.equal(0, 1, 'assert.equal msg')
 
-  //#fs #file io
+  // #fs #file io
 
     // Methods can come in both synchronous and assynchronous versions.
 
@@ -108,7 +136,7 @@ var assert = require('assert')
     var filename = 'f.tmp'
     var data = 'data'
 
-    //#readFile #writeFile
+    // #readFile #writeFile
 
       // Read write entire file at once.
 
@@ -150,21 +178,21 @@ var assert = require('assert')
         fs.unlinkSync(filename)
       }
 
-  //#os
+  // #os
 
     var os = require('os')
     console.log('os.tmpdir() = ' + os.tmpdir())
 
-  //#temporary files
+  // #temporary files
 
     // Not possible atomically with stdlib. Third party modules exist:
     // http://stackoverflow.com/questions/7055061/nodejs-temporary-file-name
 
     // Possible to find tmp dir with `os.tmpdir()`.
 
-  //#child_process
+  // #child_process
 
-    //#exec
+    // #exec
 
       var child_process = require('child_process')
 
@@ -194,11 +222,11 @@ var assert = require('assert')
         console.log('status = ' + status)
       })
 
-    //#spawn
+    // #spawn
 
       // TODO vs exec
 
-//#document #window
+// #document #window
 
   // Elements which represent browser concepts are not defined in Noje.js.
 
@@ -212,3 +240,12 @@ var assert = require('assert')
   // This can be used to check if the current code is running on nodejs or on a browser:
 
   assert.equal(typeof window, 'undefined')
+
+// #third party
+
+  // #open
+
+    // Open using default browser:
+
+    var open = require('open')
+    //open('http://example.com');
