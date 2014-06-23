@@ -1,6 +1,6 @@
 Make for Node.
 
-Has a plugin system in which each plugin takes a JSON-like configuration input
+Has a plugin system. in which each plugin takes a JSON-like configuration input
 which defines the tasks it provides.
 
 Plugins are packages installed with NPM, by convention by `grunt-`.

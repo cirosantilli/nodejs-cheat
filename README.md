@@ -243,28 +243,22 @@ For `dependencies`, `devDependencies` and `peerDependencies`:
 
 NPM supports a predefined list of scripts to do some common Makefile-like tasks.
 
-The functionality is limited since only tasks with one of the standard names can be used.
+Those tasks are either run:
 
-Tasks have a default command, and you can configure them under `package.json`
-`scripts` `name` section, e.g.:
+- when certain `npm` commands are run, e.g. `start` or `prepublish` or `postpublish`.
+- explicitly through `npm run-script <script-name> <package>` for any `script-name`.
+
+You should only use it for scripts that are hooks of things which
+only NPM can do, e.g., `prepublish` before `node publish`.
+Use the more flexible Grunt for everything else, and preferably redirect all hooks
+to `grunt tasks`.
+
+Scripts have default actions, and can be configured through `package.json > scripts > name`, e.g.:
 
     "scripts": {
       "start": "echo start",
       "test":  "echo test"
     }
-
-Run the scripts:
-
-    npm start
-    npm test
-
-Some scripts are automatically run by certain commands besides their respective command,
-e.g. `prepublish` is run not only before `npm publish`, but also before `npm install`,
-and can be used to do things like:
-
-- CoffeeScript compilation
-- minification
-- `bower install`
 
 ##info
 
@@ -305,21 +299,32 @@ The following fields are mandatory:
 
 ##Create a package
 
-<https://www.npmjs.org/doc/misc/npm-developers.html>
+    npm help developers
 
--   every file in the directory is published by `npm publish`, even if it's not tracked, unless ignored.
+To be able to require the module as `require('module-name')`, there must be an `index.js` in it.
 
--   if a `.npmignore` file exists, it lists the ignored files and `.gitignore` is not used.
+If the main file is not at the base level, e.g. CoffeeScript compiled to `dist/index.js`,
+required it from a dummy top level `index.js`:
 
-    Otherwise, `.gitignore` is used.
+    module.exports = require('./dist/index')
 
-    A `.npmignore` is necessary in most cases, and it ignores the following files
-    which are normally not gitignored:
+##npmignore
 
-    - tests
-    - CoffeScript input
+Every file in the directory is published by `npm publish`, even if it's not tracked, unless ignored.
 
-Publish a CoffeeScript package: <http://stackoverflow.com/questions/13645824/can-i-write-npm-package-in-coffeescript>:
+If a `.npmignore` file exists, it lists the ignored files and `.gitignore` is not used.
+
+`package.json` and `README*` are never ignored, even if added to `.npmignore`.
+
+Otherwise, `.gitignore` is used.
+
+A `.npmignore` is necessary in most cases, and it ignores the following files
+which are normally not gitignored:
+
+- tests
+- CoffeScript input
+
+To publish a CoffeeScript package: <http://stackoverflow.com/questions/13645824/can-i-write-npm-package-in-coffeescript>:
 
 - `.gititnore` the `.js` output
 - `.npmignore` the CoffeeScript input

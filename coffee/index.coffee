@@ -4,14 +4,31 @@ assert = require('assert')
 
 if '##var'
   ###
-  Var is not needed.
+  Var is automatically added in many cases.
 
   The entire code is put inside IIFE.
 
   Expose global variables: <http://stackoverflow.com/questions/4214731/coffeescript-global-variables>
   ###
 
-  a = 1
+  # Variables assigned inside functions before use automatically get `var` and are local:
+
+  a = 0
+  f = ->
+    a = 1
+  assert.equal a, 0
+
+  # Variables used before being assigned don't get `var` and are closure context:
+
+  a = 0
+  f = ->
+    x = a + 1
+    a += 1
+    x
+  assert.equal f(), 1
+  assert.equal a, 1
+
+  # Conclustion: very insane! Difficult to predict if something is local or a closure variable.
 
 if '##? ##existential operator'
 
@@ -72,10 +89,41 @@ if '##function'
 
   square = (x) -> x * x
   assert.equal square(2), 4
+  square = (x) ->
+    x * x
+  assert.equal square(2), 4
   cte = -> 0
   assert.equal cte(), 0
   cte = () -> 0
   assert.equal cte(), 0
+
+  if '##Pass multiple annonymous function arguments'
+
+    takeCallbacks = (cb0, cb1) ->
+      cb0() + cb1()
+
+    # Things get a bit ugly:
+
+    x = takeCallbacks ->
+        1 + 1
+      , ->
+        2 + 2
+    assert.equal x, 6
+
+    x = takeCallbacks \
+      ->
+        1 + 1
+      , ->
+        2 + 2
+    assert.equal x, 6
+
+    x = takeCallbacks(
+      ->
+        1 + 1
+      , ->
+        2 + 2
+    )
+    assert.equal x, 6
 
   if '##bind ##fat arrow ##=>'
 
@@ -95,6 +143,28 @@ if '##function'
     c = new C
     assert.equal c.instanceMethodFail(), undefined
     assert.equal c.instanceMethod(), 0
+
+  if '##splat ##... ##vararg'
+
+    # Variable number of call parameters.
+
+    # Gets transformed into an Array through arguments + slice.
+
+    f = (a, b...) ->
+      assert.equal b.constructor, Array
+      sum = a
+      b.forEach (x) ->
+        sum += x
+      sum
+    assert.equal f(1, 2, 3), 6
+
+    # Makes argument forwarding convenient:
+
+    f = (a, b) ->
+      a + b
+    g = (args...) ->
+      f.apply(@, arguments) + 1
+    assert.equal g(1, 2), 4
 
 if '##string'
 
