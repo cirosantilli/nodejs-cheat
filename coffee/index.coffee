@@ -6,9 +6,18 @@ if '##var'
   ###
   Var is automatically added in many cases.
 
-  The entire code is put inside IIFE.
+  Each compiled Javascript file is put inside an IIFE.
 
-  Expose global variables: <http://stackoverflow.com/questions/4214731/coffeescript-global-variables>
+  To expose global variables on both browser and Node.js do:
+
+    root = exports ? this
+    root.foo = -> 'Hello World'
+
+  <http://stackoverflow.com/questions/4214731/coffeescript-global-variables>
+
+  To avoid wrapping the code ina closure, compile with the `-b` option:
+  <http://stackoverflow.com/questions/5693211/getting-rid-of-coffeescripts-closure-wrapper>
+  This is strongly discouraged as it exposes everything globaly.
   ###
 
   # Variables assigned inside functions before use automatically get `var` and are local:
@@ -79,9 +88,8 @@ if '##function'
   -   if not explicit, return value is result of last expression.
 
   -   call parenthesis can be ommited if no ambiguity arises.
-      Function call must take at least one argument.
-
-      Without arguments nor parenthesis it's the function object itself.
+      Function call must take at least one argument for call to work without parenthesis:
+      without arguments nor parenthesis it's the function object itself.
 
   Possible style: omit parenthesis of the top level function call of a line,
   use for inner calls.
@@ -92,7 +100,9 @@ if '##function'
   square = (x) ->
     x * x
   assert.equal square(2), 4
+
   cte = -> 0
+  # Must use () on call because takes no arguments.
   assert.equal cte(), 0
   cte = () -> 0
   assert.equal cte(), 0
