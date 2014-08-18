@@ -26,16 +26,15 @@ octo.zen.read(function(err, message) {
   console.log(message)
 })
 
-// GitLab
-var octo = new Octokat({
-  api: 'gitlab',
-  token: config.gitlab.token
-})
-octo.repos('cirosantilli', 'test0').fetch(function(err, repo) {
-  if (err) { throw new Error(err) }
-  console.log(repo)
-})
-
+// GitLab. WIP.
+//var octo = new Octokat({
+//  api: 'gitlab',
+//  token: config.gitlab.token
+//})
+//octo.repos('cirosantilli', 'test0').fetch(function(err, repo) {
+//  if (err) { throw new Error(err) }
+//  console.log(repo)
+//})
 //var repo = gh.getRepo(config.user, config.repo)
 //repo.getInfo().then(function(repo) {
 //  console.log(repo)
