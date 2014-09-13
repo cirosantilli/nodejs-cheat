@@ -1,9 +1,11 @@
+# Node.js Cheat
+
 Node.js information and cheatsheets.
 
 General Javascript information will not be discussed here: only Node.js differences.
 For a Javascript cheat see: <https://github.com/cirosantilli/web/blob/9db1039276bd8dfd04348e0abbf2b1d2ee75c00d/js.html>
 
-#What is Node.js
+## What is Node.js
 
 Node is Javascript interpreted / compiled by Google's open source V8 Javascript engine
 used in Chrome: <https://code.google.com/p/v8>,
@@ -29,7 +31,7 @@ is closely related with web development, where requests are often made over the 
 and always take a very large time to complete.
 Many methods have both synchronous and asynchronous versions, including filesystem IO.
 
-##Common js
+### Common js
 
 Informal standard that aims at standardizing the API for Javascript outside of browsers: <http://www.commonjs.org/specs/>
 
@@ -37,13 +39,13 @@ Node implements it.
 
 It specifies things like: Filesystem, log, etc.
 
-##RequireJS
+### RequireJS
 
 Module loader optimized for browser: <http://requirejs.org/docs/node.html>
 
 Node does not use it.
 
-#Why Node.js
+## Why Node.js
 
 The major advantages of Node.js are:
 
@@ -73,7 +75,7 @@ The major advantages of Node.js are:
     [markdown-js](https://github.com/evilstreak/markdown-js)
     and [Showdown](https://github.com/coreyti/showdown).
 
-#Invocation
+## Invocation
 
 REPL interface:
 
@@ -89,7 +91,7 @@ Run `index.js` inside directory:
 
 Analogous to `require(dir)`.
 
-##Stability
+### Stability
 
 The official documentation specifies the stability of each feature.
 
@@ -98,13 +100,13 @@ What each stability level means is specified at:
 
 Level 3 or above guarantee backwards compatibility.
 
-#Ubuntu install
+## Ubuntu install
 
 Don't install from the official repositories: they are seriously outdated.
 
 Be sane, and use `nvm`.
 
-#NVM
+## NVM
 
 Node Version Manager.
 
@@ -155,7 +157,7 @@ Always use this in your project root to set the supported node version.
 
 As of early 2014, does not change version automatically like RVM does.
 
-#NPM
+## NPM
 
 Node package manager. Analogous to Ruby Bundler, Python pip.
 
@@ -169,7 +171,7 @@ Help:
     npm help install
     npm help start
 
-##install
+### install
 
 Install all dependencies of `package.json` in current dir under `node_modules`:
 
@@ -220,7 +222,7 @@ The main advantage of `--save` this is that it sets the current version for you:
 you will probably want to edit the `package.json` file to put `dependencies`
 in alphabetical order.
 
-###Versions specification
+#### Versions specification
 
 For `dependencies`, `devDependencies` and `peerDependencies`:
 
@@ -233,11 +235,11 @@ For `dependencies`, `devDependencies` and `peerDependencies`:
 
 -   `""` or `"*"`: any version
 
-##start
+### start
 
-##test
+### test
 
-##scripts
+### scripts
 
     npm help scripts
 
@@ -260,7 +262,7 @@ Scripts have default actions, and can be configured through `package.json > scri
       "test":  "echo test"
     }
 
-##info
+### info
 
 Get information on a remote package:
 
@@ -269,14 +271,14 @@ Get information on a remote package:
 Returns a JSON which includes information such as available versions
 and everything inside the `package.json`.
 
-##Useful global packages
+### Useful global packages
 
     npm install -g browserify
     npm install -g coffee-script
     npm install -g express-generator@3
     npm install -g marked
 
-##link
+### link
 
 Creates symlinks from projects in any directory into the search path.
 
@@ -290,14 +292,14 @@ Example:
 Now, running `module1` will use the development version of `module2` located at `~/projects/module2`
 using symlinks.
 
-##package.json
+### package.json
 
 The following fields are mandatory:
 
 - `name`
 - `version`
 
-##Create a package
+### Create a package
 
     npm help developers
 
@@ -308,7 +310,7 @@ required it from a dummy top level `index.js`:
 
     module.exports = require('./dist/index')
 
-##npmignore
+### npmignore
 
 Every file in the directory is published by `npm publish`, even if it's not tracked, unless ignored.
 
@@ -330,6 +332,6 @@ To publish a CoffeeScript package: <http://stackoverflow.com/questions/13645824/
 - `.npmignore` the CoffeeScript input
 - `prepublish: "grunt coffee"`
 
-#Sources
+## Sources
 
 Short tutorials: <http://docs.nodejitsu.com>

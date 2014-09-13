@@ -1,3 +1,5 @@
+# CoffeScript
+
 CoffeScript is a language that compiles into Javascript.
 
 It "corrects" much of Javascript usually undesired behaviour, and produces slightly shorter code,
@@ -14,7 +16,7 @@ Install:
 
     npm install -g coffee-script
 
-# Browser
+## Browser
 
 It is possible to run CoffeeScript on the browser, but it is not recommended to do so
 unless the goal is to allow users to input CoffeeScript because:
@@ -26,7 +28,7 @@ See <browser.html> for a working example.
 
 Discussion: <http://stackoverflow.com/questions/5170473/is-there-a-way-to-send-coffeescript-to-the-clients-browser-and-have-it-compiled>
 
-# Ups and downs
+## Ups and downs
 
 Upsides:
 
@@ -40,17 +42,17 @@ Downsides:
 - if an exception is raised at line X, you need a tool to discover what CoffeScript line it is.
     The above solution is not yet perfect: <http://stackoverflow.com/questions/15291424/coffeescript-source-maps-for-nodejs-development>
 
-# Style guides
+## Style guides
 
 - <https://github.com/polarmobile/coffeescript-style-guide>
 
-## Lint tools
+### Lint tools
 
 -   <https://github.com/clutchski/coffeelint>
 
     Grunt plugin: <https://github.com/vojtajina/grunt-coffeelint>
 
-# Documentation generation
+## Documentation generation
 
 -   <https://github.com/coffeedoc/codo>
 
@@ -60,7 +62,7 @@ Downsides:
 
     GitHub backed.
 
-# Invocation
+## Invocation
 
 Run `.coffee` file:
 
@@ -84,6 +86,6 @@ Only watch a single file:
 
     coffee -cw a.coffee
 
-# See also
+## See also
 
 CSON: CoffeScript for JSON: <https://github.com/bevry/cson>

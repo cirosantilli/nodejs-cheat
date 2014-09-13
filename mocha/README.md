@@ -1,3 +1,5 @@
+# Mocha
+
 Dominating unit test framework by visionmedia.
 
 Mocha can be used in the following ways:
@@ -14,7 +16,7 @@ Mocha can be used in the following ways:
     - <https://github.com/pghalliday/grunt-mocha-test>
     - <https://github.com/jdcataldo/grunt-mocha-phantomjs>
 
-# CLI invocation
+## CLI invocation
 
 Run all tests all `.js` files in current directory:
 
