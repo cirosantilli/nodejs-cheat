@@ -68,11 +68,15 @@ Run `.coffee` file:
 
     coffee a.coffee
 
-Compiles to `.js` and runs with `node`.
+Compile to `.js` and runs with `node`. Does not generate a `.js` file.
 
 Compile to `a.js`:
 
     coffee -c a.coffee
+
+Compile from stdin to stdout:
+
+    echo '@a = 0' | coffee -cs
 
 `watch`: compile automatically on file save for any files under current directory:
 

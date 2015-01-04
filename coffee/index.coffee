@@ -6,16 +6,25 @@ if '##var'
   ###
   Var is automatically added in many cases.
 
-  Each compiled Javascript file is put inside an IIFE.
+  Each compiled Javascript file is put inside an IIFE,
+  so to make a variable visible across files you need to do some extra work.
 
   To expose global variables on both browser and Node.js do:
 
-    root = exports ? this
+    root = exports ? @
     root.foo = -> 'Hello World'
+
+  If you only care about the browser, do just:
+
+    @foo = 0
+
+  Also works for classes, which are just functions:
+
+    class @Foo
 
   <http://stackoverflow.com/questions/4214731/coffeescript-global-variables>
 
-  To avoid wrapping the code ina closure, compile with the `-b` option:
+  To avoid wrapping the code in a closure, compile with the `-b` option:
   <http://stackoverflow.com/questions/5693211/getting-rid-of-coffeescripts-closure-wrapper>
   This is strongly discouraged as it exposes everything globaly.
   ###
@@ -80,6 +89,14 @@ if '##? ##existential operator'
     assert.equal obj.g?.asdf, undefined
     assert.equal obj.g?(),    undefined
 
+if '##switch'
+
+  switch 1
+    when 0,\
+         1
+    else
+      assert false
+
 if '##function'
 
   ###
@@ -88,8 +105,9 @@ if '##function'
   -   if not explicit, return value is result of last expression.
 
   -   call parenthesis can be ommited if no ambiguity arises.
-      Function call must take at least one argument for call to work without parenthesis:
-      without arguments nor parenthesis it's the function object itself.
+
+      Unlike in Ruby, function call must take at least one argument for call to work
+      without parenthesis: without arguments nor parenthesis it's the function object itself.
 
   Possible style: omit parenthesis of the top level function call of a line,
   use for inner calls.
@@ -107,12 +125,12 @@ if '##function'
   cte = () -> 0
   assert.equal cte(), 0
 
-  if '##Pass multiple annonymous function arguments'
+  if '##Pass multiple annonymous callback function arguments'
+
+    # Things get a bit ugly:
 
     takeCallbacks = (cb0, cb1) ->
       cb0() + cb1()
-
-    # Things get a bit ugly:
 
     x = takeCallbacks ->
         1 + 1
@@ -156,9 +174,12 @@ if '##function'
 
   if '##splat ##... ##vararg'
 
+    # Works for definition and call
+
     # Variable number of call parameters.
 
-    # Gets transformed into an Array through arguments + slice.
+    # Gets automatically transformed into an Array,
+    # presumably with `arguments` + `slice` like in the vanilla Js pattern.
 
     f = (a, b...) ->
       assert.equal b.constructor, Array
@@ -166,14 +187,14 @@ if '##function'
       b.forEach (x) ->
         sum += x
       sum
-    assert.equal f(1, 2, 3), 6
+    assert.equal f(1, 2, [3, 4]...), 10
 
     # Makes argument forwarding convenient:
 
     f = (a, b) ->
       a + b
     g = (args...) ->
-      f.apply(@, arguments) + 1
+      f(args...) + 1
     assert.equal g(1, 2), 4
 
 if '##string'
@@ -262,7 +283,7 @@ if '##class'
     assert.equal c2.instance1, 3
     assert.equal c2.instance2, 4
 
-  if '##instance methods'
+  if '##Instance methods'
 
     # Attached to prototype: `C.prototype.instanceMethod1 =`.
 
@@ -299,7 +320,7 @@ if '##class'
     assert.equal c.constructor.static, 2
     assert.equal C.static, 2
 
-  if '##inheritance'
+  if '##Inheritance'
 
     class A
       constructor: ->
@@ -330,6 +351,12 @@ if '##class'
     assert.equal c.a, 0
     assert.equal c.c, 2
     assert.equal d.a, 0
+
+    if '##super'
+
+      # Magic like in Ruby: if written without parenthesis,
+      # automatically forwards all arguments!
+      0
 
 if 'statement return value'
 
