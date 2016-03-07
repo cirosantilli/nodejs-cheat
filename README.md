@@ -2,38 +2,31 @@
 
 Node.js information and cheatsheets.
 
-General Javascript information will not be discussed here: only Node.js differences.
-For a Javascript cheat see: <https://github.com/cirosantilli/web/blob/9db1039276bd8dfd04348e0abbf2b1d2ee75c00d/js.html>
+General JavaScript information will not be discussed here: only Node.js differences. For a JavaScript cheat see: <https://github.com/cirosantilli/web/blob/9db1039276bd8dfd04348e0abbf2b1d2ee75c00d/js.html>
+
+1. [index](index.js)
+1. [HTTP](http.js)
+1. [setTimeout](setTimeout.js)
 
 ## What is Node.js
 
-Node is Javascript interpreted / compiled by Google's open source V8 Javascript engine
-used in Chrome: <https://code.google.com/p/v8>,
-official Git mirror at: <https://github.com/v8/v8> outside of browsers.
+Node is JavaScript interpreted / compiled by Google's open source V8 JavaScript engine used in Chrome: <https://code.google.com/p/v8>, official Git mirror at: <https://github.com/v8/v8> outside of browsers.
 
-It transforms Javascript into a language + stdlib comparable to Python or Ruby.
+It transforms JavaScript into a language + stdlib comparable to Python or Ruby.
 
 It is often used on server side applications, although it already has many client applications as well.
 
-V8 implements all of ECMAScript 5, so you can use all of it,
-including things which you should not usually use from browsers because some browsers don't implement them.
+V8 implements all of ECMAScript 5, so you can use all of it, including things which you should not usually use from browsers because some browsers don't implement them.
 
-Since it is run from outside the browser, built-in objects such as `document` and `window`
-which represent web page concepts are not defined. That those built-in objects
-are not defined as part of ECMAScript.
+Since it is run from outside the browser, built-in objects such as `document` and `window` which represent web page concepts are not defined. That those built-in objects are not defined as part of ECMAScript.
 
-Node does add other built-ins and a file require system. These add functionality
-which is often implemented in the stdlib of other languages like Python or Ruby,
-such as file IO, and cannot be provided by in-browser Javascript for security concerns.
+Node does add other built-ins and a file require system. These add functionality which is often implemented in the stdlib of other languages like Python or Ruby, such as file IO, and cannot be provided by in-browser JavaScript for security concerns.
 
-Node gives great importance to parallel processing, because its development
-is closely related with web development, where requests are often made over the network
-and always take a very large time to complete.
-Many methods have both synchronous and asynchronous versions, including filesystem IO.
+Node gives great importance to parallel processing, because its development is closely related with web development, where requests are often made over the network and always take a very large time to complete. Many methods have both synchronous and asynchronous versions, including filesystem IO.
 
 ### Common js
 
-Informal standard that aims at standardizing the API for Javascript outside of browsers: <http://www.commonjs.org/specs/>
+Informal standard that aims at standardizing the API for JavaScript outside of browsers: <http://www.commonjs.org/specs/>
 
 Node implements it.
 
@@ -49,9 +42,7 @@ Node does not use it.
 
 The major advantages of Node.js are:
 
--   There is a huge number of people who know the base language (Javascript),
-    because every web developer must know Javascript as it is run on the front-end,
-    while there are tons of backend alternatives (Ruby, Python, PHP, Perl, Java, etc.)
+-   There is a huge number of people who know the base language (JavaScript), because every web developer must know JavaScript as it is run on the front-end, while there are tons of backend alternatives (Ruby, Python, PHP, Perl, Java, etc.)
 
     This means that if you write code in Node.js:
 
@@ -70,10 +61,7 @@ The major advantages of Node.js are:
     - in-browser rendering for preview as you type
     - local rendering for offline development
 
-    It is therefore no surprise that there are currently 3 Node.js markdown engines
-    with huge number of stars on GitHub: [Marked](https://github.com/chjj/marked),
-    [markdown-js](https://github.com/evilstreak/markdown-js)
-    and [Showdown](https://github.com/coreyti/showdown).
+    It is therefore no surprise that there are currently 3 Node.js markdown engines with huge number of stars on GitHub: [Marked](https://github.com/chjj/marked), [markdown-js](https://github.com/evilstreak/markdown-js) and [Showdown](https://github.com/coreyti/showdown).
 
 ## Invocation
 
@@ -95,8 +83,7 @@ Analogous to `require(dir)`.
 
 The official documentation specifies the stability of each feature.
 
-What each stability level means is specified at:
-<http://nodejs.org/api/documentation.html#documentation_stability_index>
+What each stability level means is specified at: <http://nodejs.org/api/documentation.html#documentation_stability_index>
 
 Level 3 or above guarantee backwards compatibility.
 
@@ -131,8 +118,7 @@ Install a new version of Node:
     nvm install 0.9.0
     nvm install 0.9.9
 
-May either download a binary (fast) or compile from source if not possible
-(slower and requires that you have dev tools installed).
+May either download a binary (fast) or compile from source if not possible (slower and requires that you have dev tools installed).
 
 List currently installed node versions:
 
@@ -187,18 +173,15 @@ Help on the format of `package.json`:
 
 As explained in `npm help folders`:
 
--   Local install (default): puts stuff in `./node_modules` of the current package root,
-    which is high on the `require` search path.
+-   Local install (default): puts stuff in `./node_modules` of the current package root, which is high on the `require` search path.
 
-    If the module comes with executables, those will be put under `./node_modules/.bin`,
-    so you should add the following line to your `.bashrc`:
+    If the module comes with executables, those will be put under `./node_modules/.bin`, so you should add the following line to your `.bashrc`:
 
         export PATH="./node_modules/.bin:$PATH"
 
     This way you will use the executables at the same version as specified on the `package.json`.
 
--   Global install (with `-g`): puts stuff in `/usr/local` or wherever node is installed.
-    TODO: `~/.npm/` vs `~/.nvm/v0.10.26/lib/node_modules/`
+-   Global install (with `-g`): puts stuff in `/usr/local` or wherever node is installed. TODO: `~/.npm/` vs `~/.nvm/v0.10.26/lib/node_modules/`
 
 -   Install it locally if you´re going to `require()` it.
 
@@ -218,9 +201,7 @@ Same for `devDependencies`:
 
     npm install package_name --saveDev
 
-The main advantage of `--save` this is that it sets the current version for you:
-you will probably want to edit the `package.json` file to put `dependencies`
-in alphabetical order.
+The main advantage of `--save` this is that it sets the current version for you: you will probably want to edit the `package.json` file to put `dependencies` in alphabetical order.
 
 #### Versions specification
 
@@ -228,8 +209,7 @@ For `dependencies`, `devDependencies` and `peerDependencies`:
 
 -   caret `^`: latest major version. `^1.2.3` matches `1.3.5`, but not `2.0.0`.
 
-    Default on NPM 1.4.3, and probably a good default, since with semantic versioning
-    it incorporates new features (`MINOR`) and bug fixes (`PATCH`).
+    Default on NPM 1.4.3, and probably a good default, since with semantic versioning it incorporates new features (`MINOR`) and bug fixes (`PATCH`).
 
 -   tilde `~`: latest minor version. `~1.2.3` matches `1.2.5`, but not `~1.2.0`
 
@@ -250,10 +230,7 @@ Those tasks are either run:
 - when certain `npm` commands are run, e.g. `start` or `prepublish` or `postpublish`.
 - explicitly through `npm run-script <script-name> <package>` for any `script-name`.
 
-You should only use it for scripts that are hooks of things which
-only NPM can do, e.g., `prepublish` before `node publish`.
-Use the more flexible Grunt for everything else, and preferably redirect all hooks
-to `grunt tasks`.
+You should only use it for scripts that are hooks of things which only NPM can do, e.g., `prepublish` before `node publish`. Use the more flexible Grunt for everything else, and preferably redirect all hooks to `grunt tasks`.
 
 Scripts have default actions, and can be configured through `package.json > scripts > name`, e.g.:
 
@@ -268,8 +245,7 @@ Get information on a remote package:
 
     npm info package_name
 
-Returns a JSON which includes information such as available versions
-and everything inside the `package.json`.
+Returns a JSON which includes information such as available versions and everything inside the `package.json`.
 
 ### Useful global packages
 
@@ -289,8 +265,7 @@ Example:
     cd ~/projects/module1
     npm link ../module2
 
-Now, running `module1` will use the development version of `module2` located at `~/projects/module2`
-using symlinks.
+Now, running `module1` will use the development version of `module2` located at `~/projects/module2` using symlinks.
 
 ### package.json
 
@@ -305,8 +280,7 @@ The following fields are mandatory:
 
 To be able to require the module as `require('module-name')`, there must be an `index.js` in it.
 
-If the main file is not at the base level, e.g. CoffeeScript compiled to `dist/index.js`,
-required it from a dummy top level `index.js`:
+If the main file is not at the base level, e.g. CoffeeScript compiled to `dist/index.js`, required it from a dummy top level `index.js`:
 
     module.exports = require('./dist/index')
 
@@ -320,8 +294,7 @@ If a `.npmignore` file exists, it lists the ignored files and `.gitignore` is no
 
 Otherwise, `.gitignore` is used.
 
-A `.npmignore` is necessary in most cases, and it ignores the following files
-which are normally not gitignored:
+A `.npmignore` is necessary in most cases, and it ignores the following files which are normally not gitignored:
 
 - tests
 - CoffeScript input
@@ -332,6 +305,6 @@ To publish a CoffeeScript package: <http://stackoverflow.com/questions/13645824/
 - `.npmignore` the CoffeeScript input
 - `prepublish: "grunt coffee"`
 
-## Sources
+## Bibliography
 
 Short tutorials: <http://docs.nodejitsu.com>

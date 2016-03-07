@@ -2,10 +2,11 @@
 
 var assert = require('assert')
 
-// #shebang on the first line works on Node even if Javascript comments don't start with hash.
+// # shebang on the first line works on Node
+// even if Javascript comments don't start with hash.
 // node just does a special check on the first line.
 
-// #this
+// # this
 
   // Unlike inside a browser, `this` on the module scope is not equal to `window`, which contains all global values.
 
@@ -17,35 +18,37 @@ var assert = require('assert')
     ReferenceError
   )
 
-// #global objects #builtins
+// # global objects
 
-  // Full list: <http://nodejs.org/api/globals.html>
+// # builtins
 
-  // #console
+  // Full list: http://nodejs.org/api/globals.html
+
+  // # console
 
     // log to streams.
 
     // Standard way to write to messages: more flexible than explicit stdout / err as they can be redirected
     // to other places as needed.
 
-    // #log goes to stdout by default and takes printf formated strings. Automatically adds trailing newline.
+    // # log goes to stdout by default and takes printf formated strings. Automatically adds trailing newline.
 
     console.log('log %d', 1)
 
-    // #error goes to stderr by default:
+    // # error goes to stderr by default:
 
     console.error('error')
 
-  // #process
+  // # process
 
-    // #stdout #stderr
+    // # stdout #stderr
 
       // Prefer `log` functions whenever possible.
 
       process.stdout.write('stdout\n')
       process.stdout.write('stderr\n')
 
-    // #stdin
+    // # stdin
 
       // Read stdin until closed.
 
@@ -68,13 +71,13 @@ var assert = require('assert')
         console.log('after stdin.on')
       }
 
-    // #exit
+    // # exit
 
       // Exit with given exit status:
 
       //process.exit(1)
 
-    // #exit event
+    // # exit event
 
       // Run some code just before the process is about to finish.
 
@@ -84,7 +87,7 @@ var assert = require('assert')
         console.log('process.on("exit")')
       })
 
-    // #argv
+    // # argv
 
       console.log('argv = ' + process.argv.join(', '))
 
@@ -94,7 +97,7 @@ var assert = require('assert')
 
       arg = process.argv.slice(2)
 
-  // #setTimeout
+  // # setTimeout
 
     // Compatible interface with Js.
 
@@ -104,18 +107,24 @@ var assert = require('assert')
       }, 1000)
     }
 
-  // #__dirname #__filename
+  // # __dirname
+
+  // # __filename
 
     console.log('__dirname  = ' + __dirname)
     console.log('__filename = ' + __filename)
 
-// #module #require #export
+// # module
+
+// # require
+
+// # export
 
     require('./require')
 
-// #modules from stdlib
+// # stdlib
 
-  // #assert
+  // # assert
 
     var assert = require('assert')
 
@@ -123,7 +132,9 @@ var assert = require('assert')
     //assert.equal(0, 1)
     //assert.equal(0, 1, 'assert.equal msg')
 
-  // #fs #file io
+  // # fs
+
+  // # file io
 
     // Methods can come in both synchronous and assynchronous versions.
 
@@ -136,7 +147,7 @@ var assert = require('assert')
     var filename = 'f.tmp'
     var data = 'data'
 
-    // #readFile #writeFile
+    // # readFile #writeFile
 
       // Read write entire file at once.
 
@@ -178,21 +189,21 @@ var assert = require('assert')
         fs.unlinkSync(filename)
       }
 
-  // #os
+  // # os
 
     var os = require('os')
     console.log('os.tmpdir() = ' + os.tmpdir())
 
-  // #temporary files
+  // # temporary files
 
     // Not possible atomically with stdlib. Third party modules exist:
     // http://stackoverflow.com/questions/7055061/nodejs-temporary-file-name
 
     // Possible to find tmp dir with `os.tmpdir()`.
 
-  // #child_process
+  // # child_process
 
-    // #exec
+    // # exec
 
       var child_process = require('child_process')
 
@@ -222,11 +233,15 @@ var assert = require('assert')
         console.log('status = ' + status)
       })
 
-    // #spawn
+    // # spawn
 
       // TODO vs exec
 
-// #document #window
+    // # util
+
+// # document
+
+// # window
 
   // Elements which represent browser concepts are not defined in Noje.js.
 
@@ -241,9 +256,9 @@ var assert = require('assert')
 
   assert.equal(typeof window, 'undefined')
 
-// #third party
+// # third party
 
-  // #open
+  // # open
 
     // Open using default browser:
 
