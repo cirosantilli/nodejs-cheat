@@ -1,0 +1,32 @@
+= Node.js Cheat
+:idprefix:
+:idseparator: -
+:sectanchors:
+:sectlinks:
+:sectnumlevels: 6
+:sectnums:
+:toc: macro
+:toclevels: 6
+:toc-title:
+
+TODO: move README.md into this file.
+
+toc::[]
+
+== Examples
+
+* link:hello.js[]
+* Interactive
+** link:https.js[]
+** link:set_timeout.js[]
+
+== Webdev
+
+=== Mean stack
+
+Hello world examples:
+
+* https://github.com/meanjs/mean/issues/2010 works but boring
+* https://github.com/linnovate/mean/issues/1938 couldn't get running: https://github.com/linnovate/mean/issues/1938#issuecomment-460043971 
+* https://github.com/Azure-Samples/meanjs TODO
+* https://github.com/didinj/mean-stack-angular6-crud-example TODO

@@ -5,8 +5,6 @@ Node.js information and cheatsheets.
 General JavaScript information will not be discussed here: only Node.js differences. For a JavaScript cheat see: <https://github.com/cirosantilli/web/blob/9db1039276bd8dfd04348e0abbf2b1d2ee75c00d/js.html>
 
 1. [index](index.js)
-1. [HTTP](http.js)
-1. [setTimeout](setTimeout.js)
 
 ## What is Node.js
 
