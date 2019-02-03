@@ -16,6 +16,7 @@ toc::[]
 == Examples
 
 * link:hello.js[]
+* link:index_in_dir/index.js[]
 * Interactive
 ** link:https.js[]
 ** link:set_timeout.js[]
