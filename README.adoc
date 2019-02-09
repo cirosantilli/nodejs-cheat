@@ -13,13 +13,37 @@ TODO: move README.md into this file.
 
 toc::[]
 
+== Getting started
+
+Install node and run all automatable tests:
+
+....
+# Install node.
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
+source ~/.nvm/nvm.sh
+nvm install
+nvm use
+
+# Install package dependencies.
+npm install
+
+# Run automatable tests.
+npm run
+....
+
+We install the correct version of Node through NVM: https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version/1115255#1115255
+
+The Node version is given by our link:.nvmrc[].
+
 == Examples
 
 * link:hello.js[]
 * link:index_in_dir/index.js[]
-* Interactive
-** link:https.js[]
-** link:set_timeout.js[]
+* link:version.js[]
+* link:http.js[]
+* link:set_timeout.js[]
+* process
+** link:false.js[]
 
 == Webdev
 
@@ -27,7 +51,15 @@ toc::[]
 
 Hello world examples:
 
-* https://github.com/meanjs/mean/issues/2010 works but boring
+* https://github.com/didinj/mean-stack-angular6-crud-example works at 0efdf5cd350f7db35da3d5b21f1f5e7bed1abcfc node v10.15.1, actually contains a minimal CRUD example
+* https://github.com/DimiMikadze/Mean-Blog did not work at 01c6ff84a9f2ae92b87827001e63ac13a60eb9d4 I think, did not create database. I don't like it's aesthetics though.
+* https://github.com/meanjs/mean works as shown at https://github.com/meanjs/mean/issues/2010 but boring, can't see the CRUD minimal example easily
 * https://github.com/linnovate/mean/issues/1938 couldn't get running: https://github.com/linnovate/mean/issues/1938#issuecomment-460043971 
-* https://github.com/Azure-Samples/meanjs TODO
-* https://github.com/didinj/mean-stack-angular6-crud-example TODO
+
+== Testing this repo
+
+=== Linting
+
+TODO: linting with eslint is setup, but there are many old failing files.
+
+At some point we want to fix those and move the linting into `npm test`.

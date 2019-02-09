@@ -16,7 +16,7 @@
  * ....
  */
 console.log('0');
-setTimeout(function(){
+setTimeout(() => {
   console.log('1');
 }, 2000);
 console.log('2');

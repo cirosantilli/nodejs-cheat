@@ -13,7 +13,12 @@
     "open": "0.0.5"
   },
   "scripts": {
-    "start": "echo start",
-    "test": "echo test"
+    "test": "./index.js",
+    "start": "echo start"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0"
   }
 }
