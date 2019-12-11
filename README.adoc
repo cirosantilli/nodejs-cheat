@@ -9,6 +9,10 @@
 :toclevels: 6
 :toc-title:
 
+This repo is in the process of moving to: https://cirosantilli.com/linux-kernel-module-cheat#node-js
+
+The move will be done progressively as examples are needed there, and no new content will be added here.
+
 TODO: move README.md into this file.
 
 toc::[]
@@ -37,7 +41,6 @@ The Node version is given by our link:.nvmrc[].
 
 == Examples
 
-* link:hello.js[]
 * link:index_in_dir/index.js[]
 * link:version.js[]
 * link:http.js[]
